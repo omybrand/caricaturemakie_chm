@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Caricature Make for Result</title>
+	<script>
+
+		function GoTo()
+		{
+			var code = document.getElementById("code").value;
+   			window.android.GoTo(code);
+		}
+
+	</script>
+</head>
+<body onload="GoTo();">
+	<input type="hidden" id="code" value="<%=code %>">
+</body>
+</html>

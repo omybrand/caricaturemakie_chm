@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html ng-app="myTodo">
+<head>
+	<meta charset="utf-8">
+	<title>Caricature Make for Order</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+	<meta name="description" content="caricature make payment page">
+	<meta name="author" content="O MY BRAND">
+
+	<!-- jQuery Version 1.11.0 -->
+    <script src="/chm/js/jquery-1.11.0.js"></script>
+
+	<!-- Bootstrap Core CSS -->
+	<link href="/chm/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link href="/chm/css/modern-business_2.css" rel="stylesheet">
+
+	<!-- Owl Carousel Assets -->
+	<link href="/chm/css/owl.carousel.css" rel="stylesheet">
+	<link href="/chm/css/owl.theme.css" rel="stylesheet">
+
+	<!-- Custom Fonts -->
+	<link href="/chm/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+	<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"> </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.5/angular.min.js"> </script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <script>
+    	function addorder() {
+    		if (document.getElementById("price").value != 0) {
+				document.form1.submit();
+			}
+		}
+
+    	function back() {
+    		history.back();
+    	}
+
+		function onlyNum() {
+			var keycode = window.event.keyCode;
+
+			if(keycode == 8 || (keycode >= 35 && keycode <= 40) || (keycode >= 46 && keycode <= 57) || (keycode >= 96 && keycode <= 105) || keycode == 110 || keycode == 190) {
+				window.event.returnValue = true;
+				return;
+			} else {
+				window.event.returnValue = false;
+				return;
+			}
+		}
+    </script>
+
+</head>
+<body ng-controller="mainController">
+	<!-- 네비게이션 -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/chm/user/"><img src="/chm/imgs/logo.png"></a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	<!-- Page Content -->
+	<div id="contents" class="container" >
+		<form id="form1" name="form1" action="/chm/order_app/order" method="post">
+			<!--order-->
+			<div class="order">
+				<br>
+				<!--
+				<div id="owl-demo" class="owl-carousel" align="center">
+					<% for (var i in datas) { %>
+						<div class="item"><img src="<%=datas[i].artist_cover %>"></div>
+					<% } %>
+				</div>
+				-->
+				<div class="row">
+					<div align="center">
+						<div class="selector col-lg-12">
+							<h5><strong>스타일 선택</strong></h5>
+							<select class="form-control" ng-model="formData.sn" ng-change="findTodo()">
+								<% for (var i in datas) { %>
+									<option value="<%= datas[i].style_sn %>"><%= datas[i].style_name %></option>
+								<% } %>
+							</select>
+							<input type="hidden" id="artist_sn" name="artist_sn">
+							<input type="hidden" id="style_sn" name="style_sn">
+						</div>
+						<div class="selector col-lg-12">
+							<h5><strong>작업스타일 선택</strong></h5>
+							<select class="form-control" ng-model="formData.modes" ng-change="setVal()">
+								<option value="0" selected>상반신 스케치</option>
+								<option value="1">상반신 포인트컬러</option>
+								<option value="2">상반신 풀컬러</option>
+								<option value="3">전신 스케치</option>
+								<option value="4">전신 포인트컬러</option>
+								<option value="5">전신 풀컬러</option>
+							</select>
+							<input type="hidden" id="mode" name="mode" value="0">
+						</div>
+						<div class="selector col-lg-12">
+							<h5><strong>인원수</strong></h5>
+							<select class="form-control" ng-model="formData.pcnt" ng-change="setVal()">
+								<option value="1" selected>1명</option>
+								<option value="2">2명</option>
+								<option value="3">3명</option>
+								<option value="4">4명</option>
+							</select>
+							<input type="hidden" id="pcount" name="pcount" value="1">
+						</div>
+						<div class="selector col-lg-12">
+							<h5><strong>추가 옵션</strong></h5>
+							<select class="form-control" ng-model="formData.goods_sn" ng-change="setVal()">
+								<option value="chmg00000001" selected>일러스트(+10000원)</option>
+								<option value="chmg00000002">액자(+20000원)</option>
+							</select>
+							<input type="hidden" id="goods_sn" name="goods_sn" value="chmg00000001">
+						</div>
+						<div class="selector col-lg-12">
+							<h5><strong>추가 옵션 개수</strong></h5>
+							<input type="text" class="form-control" ng-model="formData.goods_count" ng-change="setVal()" value="1" maxlength="4" onkeydown="onlyNum();">
+							<input type="hidden" id="goods_count" name="goods_count" value="1">
+						</div>
+					</div>
+					<!-- 결제 테스트용은 생략함 -->
+					<!--
+					<div class="user_req col-lg-12" align="center">
+						<h5><strong>사진선택</strong></h5>
+						<input type="file" id="upfile" name="upfile" accept="image/*">
+						<h5><strong>※확장자는 jpg, jpeg, png, bmp만 허용합니다.</strong></h5>
+						<br>
+					</div>
+					-->
+					<div class="user_req col-lg-12">
+						<h5><strong>요구사항</strong></h5>
+						<input type="text" class="form-control" name="user_req" value="이쁘게 그려주세요."><br>
+					</div>
+					<div class="col-lg-12">
+						<h5><strong>결제금액</strong></h5>
+						<div class="panel-group">
+							<!--panel-->
+							<div class="panel panel-default">
+								<div class="accordion-toggle">
+									<div>
+										<h5>캐리커쳐 금액: {{bp}} 원</h5>
+										<h5>인원수: {{pcnt}} 명</h5>
+										<h5>추가옵션: {{gprice}}</h5>
+										<h5>수량: {{gcnt}} 개</h5>
+										<hr>
+										<h4>합   계: {{sum}} 원</h4>
+				                    </div>
+								</div>
+							</div>
+							<!-- /.panel -->
+						</div>
+						<!-- /.panel-group -->
+					</div>
+					<!-- /.col-lg-12 -->
+
+	           		<!--총 가격-->
+					<input type="hidden" id="price" name="price"><br>
+					<!--상품일련번호-->
+					<!--
+					<input type="hidden" name="goods_sn" value="chmg00000001"><br>
+					-->
+					<!--상품개수-->
+					<!--
+					<input type="hidden" name="goods_count" value="1"><br>
+					-->
+
+					<!--GCM ID-->
+					<input type="hidden" name="user_registid" value="APA91bHO4oRmy2WEgEpEMmMZsKWkjb21Gy9s4LzVD8L2odMIXguhP7-s_sN3fQlTjczJvNK4p0yxaIU8Nsy-E2PSrHJDhNmw7imO4WaYXy4rACRi3o9F-mg5PvZa9xudRIVTqMj-rQMQKZL1Ww4zUVXrAlH1H1Os-Q"><br>
+				</div>
+				<!-- /.row -->
+				<!--btn-group-->
+				<div class="btn-group">
+					<div class="col-lg-6">
+						<input type="button" class="btn btn-primary" value="취소하기" onclick="back()">
+					</div>
+					<div class="col-lg-6">
+						<input type="button" class="btn btn-primary" value="주문하기" onclick="addorder()">
+					</div>
+				</div>
+				<!--/btn-group-->
+			</div>
+			<!--/order-->
+		</form>
+	</div>
+	<!-- /.container -->
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div>
+						<p class="company_info">상호: 오마이브랜드&nbsp;&nbsp;&nbsp; 사업자등록번호: 215-24-67477&nbsp;&nbsp;&nbsp; 사업장대표번호: 070-4680-5217&nbsp;&nbsp;&nbsp; 사업장 주소지: 서울시 용산구 원효로1가 25 용산창업플러스센터 본관 305호 대표자&nbsp;&nbsp;&nbsp; 성명: 심성규</p>
+					</div>
+					<hr class="footer_hr">
+					<span class="copyright">Copyright &copy; O'MY BRAND 2014</span>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--
+	<script src="/chm/js/jquery-1.9.1.min.js"></script>
+	-->
+	<script src="/chm/js/owl.carousel.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/chm/js/bootstrap.min.js"></script>
+	<!-- Demo -->
+
+	<script src="/chm/js/usertodo.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			$("#owl-demo").owlCarousel({
+				navigation : true,
+				slideSpeed : 300,
+				paginationSpeed : 400,
+				singleItem : true
+
+				// "singleItem:true" is a shortcut for:
+				// items : 1,
+				// itemsDesktop : false,
+				// itemsDesktopSmall : false,
+				// itemsTablet: false,
+				// itemsMobile : false
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="omybrand_artist_admin">
+    <meta name="author" content="omybrand">
+
+    <title>Caricature Ma-kie Artist</title>
+
+    <!-- Custom styles for this template -->
+    <link href="/chm/assets_artist/css/style.css" rel="stylesheet">
+    <link href="/chm/assets_artist/css/style-responsive.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/chm/assets_artist/css/bootstrap.css" rel="stylesheet">
+    <link href="/chm/assets_artist/js/fancybox/jquery.fancybox.css" rel="stylesheet" />
+    <!--external css-->
+    <link href='http://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="/chm/assets_artist/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/chm/assets_artist/css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="/chm/assets_artist/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="/chm/assets_artist/lineicons/style.css">
+
+    <script src="/chm/assets_artist/js/jquery.js"></script>
+
+    <script>
+        function reject() {
+            if (document.form1.reserve_reason.value == '') {
+              alert("거절 사유를 작성해주세요~!");
+              return;
+            }
+
+            if (document.form1.reject.value == '0') {
+              alert("거절 이유를 선택해주세요~!");
+              return;
+            }
+
+            document.form1.reserve_reject.value = document.form1.reject.value;
+            document.form1.action="/chm/reserve/reject";
+            document.form1.submit();
+        }
+
+        function ok() {
+            if (document.form1.reserve_addpay.value == '') {
+                document.form1.reserve_addpay.value = "0";
+            }
+            console.log(document.form1.reserve_pcount.value);
+            console.log(document.form1.reserve_prepcount.value);
+
+            if (document.form1.reserve_pcount.value != document.form1.reserve_prepcount.value) {
+                document.form1.reserve_reject.value = "2";
+                document.form1.action="/chm/reserve/change";
+                document.form1.submit();
+                return;
+            }
+
+            if (document.form1.reserve_wanttime.value != document.form1.reserve_time1.value || document.form1.reserve_wanttime.value != document.form1.reserve_time2.value || document.form1.reserve_wanttime.value != document.form1.reserve_time3.value) {
+                document.form1.reserve_reject.value = "4";
+                document.form1.action="/chm/reserve/change";
+                document.form1.submit();
+                return;
+            }
+
+            document.form1.action="/chm/reserve/ok";
+            document.form1.submit();
+        }
+    </script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+  <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div>
+            <!--logo start-->
+            <a href="/chm/artist/" class="logo">Ma-kie Artist</a>
+            <!--logo end-->
+            </div>
+            <div class="top-menu">
+              <ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="/chm/artist/logout">Logout</a></li>
+              </ul>
+            </div>
+        </header>
+      <!--header end-->
+
+      <!--sidebar start-->
+      <aside>
+          <div id="sidebar"  class="nav-collapse ">
+              <!-- sidebar menu start-->
+              <ul class="sidebar-menu" id="nav-accordion">
+                  <p class="centered"><a href="/chm/artist/"><img src="/chm/assets_artist/img/login_logo_2.png" width="100"></a></p>
+                  <li class="sub-menu korean">
+                      <a href="/chm/artist/notice">
+                          <img src="/chm/assets_artist/img/icon_notice_2.png" class="sidebar_icon">
+                          <span>공지사항</span>
+                      </a>
+                  </li>
+                  <li class="sub-menu korean">
+                      <a href="javascript:;" class="active">
+                          <img src="/chm/assets_artist/img/icon_reservation_2.png" class="sidebar_icon">
+                          <span class="sidebar_text">예약관리</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a href="/chm/artist/reserve/request">예약요청리스트</a></li>
+                          <li><a href="/chm/artist/reserve/accept">예약수락리스트</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu korean">
+                      <a href="javascript:;">
+                          <img src="/chm/assets_artist/img/icon_works.png" class="sidebar_icon">
+                          <span class="sidebar_text">작업관리</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a href="/chm/artist/work/wait">작업대기리스트</a></li>
+                          <li><a href="/chm/artist/work/now">작업중</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu korean">
+                      <a href="javascript:;" >
+                          <img src="/chm/assets_artist/img/icon_calculate.png" class="sidebar_icon">
+                          <span class="sidebar_text">작업완료내역 및 정산</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a href="/chm/artist/cal">캐리커쳐정산</a></li>
+                          <!--<li><a  href="calculate_product.html">상품정산</a></li>-->
+                      </ul>
+                  </li>
+                  <li class="sub-menu korean">
+                      <a href="javascript:;" >
+                          <img src="/chm/assets_artist/img/icon_style.png" class="sidebar_icon">
+                          <span class="sidebar_text">캐리커쳐 스타일관리</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a href="/chm/artist/style/list">스타일 리스트</a></li>
+                      </ul>
+                  </li>
+                  <li class="sub-menu korean">
+                      <a href="javascript:;" >
+                          <img src="/chm/assets_artist/img/icon_artist_info.png" class="sidebar_icon">
+                          <span class="sidebar_text">작가 정보관리</span>
+                      </a>
+                      <ul class="sub">
+                          <li><a href="/chm/artist/info">작가 정보 보기</a></li>
+                      </ul>
+                  </li>
+              </ul>
+              <!-- sidebar menu end-->
+          </div>
+      </aside>
+      <!--sidebar end-->
+
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content">
+      	  <section class="wrapper">
+              <form id="form1" name="form1" method="post">
+              <!--order_view start-->
+			  <div class="order_view col-lg-12" id="order_view">
+                  <div class="col-lg-12">
+                     <div class="stamp_img col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                         <img src="/chm/assets_artist/img/stamp.png">
+                     </div>
+                     <div class="dear_group col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <h2><span class="dear">Dear</span><span class="artist_name korean"><span><%=datas[0].artist_name %></span> 작가님</span><br></h2>
+                          <% if (datas[0].reserve_state == 0) { %>
+                          <p class="dear_sentence korean">안녕하세요 작가님 :) 고객님께서 예약요청을 하셨습니다.예약정보 검토 후 예약수락 여부를 결정해주세요!</p>
+                          <% } else { %>
+                          <p class="dear_sentence korean">안녕하세요 작가님 :) 해당 예약은 고객님의 결제 대기중입니다.</p>
+                          <% } %>
+                     </div>
+                  </div>
+                  <hr class="col-lg-12" id="hr">
+                  <div class="order_view_title col-lg-12">
+                  	  <h3 class="korean">[예약 요청정보]</h3>
+                  </div>
+                  <!--order_photo start-->
+                  <div class="order_photo_group col-lg-12">
+                      <!--artist start-->
+                      <div class="order_photo col-lg-4">
+                          <div class="works_state_caption_pink">
+                              <ul>
+                                  <li><h5 class="order_photo_title korean">메인사진</h5></li>
+                              </ul>
+                          </div>
+                          <div class="photo_hover">
+                              <div class="zoom">
+                                  <div class="body-panel_small">
+                                      <a class="fancybox" href="<%=datas[0].reserve_photo1 %>"><img src="<%=datas[0].reserve_photo1 %>" alt=""></a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--/.artist end-->
+                      <% if (datas[0].reserve_photo2 != null) { %>
+                      <!--artist start-->
+                      <div class="order_photo col-lg-4">
+                          <div class="works_state_caption_pink">
+                              <ul>
+                                  <li><h5 class="order_photo_title korean">참고사진1</h5></li>
+                              </ul>
+                          </div>
+                          <div class="photo_hover">
+                              <div class="zoom">
+                                  <div class="body-panel_small">
+                                      <a class="fancybox" href="<%=datas[0].reserve_photo2 %>"><img src="<%=datas[0].reserve_photo2 %>"></a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--/.artist end-->
+                      <% } %>
+                      <% if (datas[0].reserve_photo3 != null) { %>
+                      <!--artist start-->
+                      <div class="order_photo col-lg-4">
+                          <div class="works_state_caption_pink">
+                              <ul>
+                                  <li><h5 class="order_photo_title korean">참고사진2</h5></li>
+                              </ul>
+                          </div>
+                          <div class="photo_hover">
+                              <div class="zoom">
+                                  <div class="body-panel_small">
+                                      <a class="fancybox" href="<%=datas[0].reserve_photo3 %>"><img src="<%=datas[0].reserve_photo3 %>"></a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <!--/.artist end-->
+                      <% } %>
+                  </div>
+                  <!--/.order_photo end-->
+                  <!--order_basic_info start-->
+                  <div class="col-lg-12">
+                      <form class="form-horizontal" role="form">
+                          <div class="form-group col-lg-12">
+                              <label class="korean col-lg-4 control-label" for="artist_mail">캐리커쳐 스타일</label>
+                              <div class="col-lg-6">
+                                  <input type="text" class="korean form-control input-lg" id="atist_mail" value="<%=datas[0].style_name %>" readonly>
+                              </div>
+                          </div>
+                          <div class="form-group col-lg-12">
+                              <label class="korean col-lg-4 control-label" for="artist_name">작업스타일</label>
+                              <div class="col-lg-6">
+                                  <% if (datas[0].reserve_select == 0) { %>
+                                    <input type="text" class="korean form-control input-lg" id="atist_name" value="상반신 스케치" readonly>
+                                  <% } else if (datas[0].reserve_select == 1) { %>
+                                    <input type="text" class="korean form-control input-lg" id="atist_name" value="상반신 포인트컬러" readonly>
+                                  <% } else if (datas[0].reserve_select == 2) { %>
+                                    <input type="text" class="korean form-control input-lg" id="atist_name" value="상반신 풀컬러" readonly>
+                                  <% } else if (datas[0].reserve_select == 3) { %>
+                                    <input type="text" class="korean form-control input-lg" id="atist_name" value="전신 스케치" readonly>
+                                  <% } else if (datas[0].reserve_select == 4) { %>
+                                    <input type="text" class="korean form-control input-lg" id="atist_name" value="전신 포인트컬러" readonly>
+                                  <% } else if (datas[0].reserve_select == 5) { %>
+                                    <input type="text" class="korean form-control input-lg" id="atist_name" value="전신 풀컬러" readonly>
+                                  <% } %>
+                              </div>
+                          </div>
+                          <div class="form-group col-lg-12">
+                              <label class="korean col-lg-4 control-label" for="artist_name">작업사이즈</label>
+                              <div class="col-lg-6">
+                                  <% if (datas[0].reserve_size == 0) { %>
+                                    <input type="text" class="korean form-control input-lg" id="atist_name" value="A4" readonly>
+                                  <% } else if (datas[0].reserve_size == 1) { %>
+                                    <input type="text" class="korean form-control input-lg" id="atist_name" value="A2" readonly>
+                                  <% } else if (datas[0].reserve_size == 2) { %>
+                                    <input type="text" class="korean form-control input-lg" id="atist_name" value="A1" readonly>
+                                  <% } else if (datas[0].reserve_size == 3) { %>
+                                    <input type="text" class="korean form-control input-lg" id="atist_name" value="A0" readonly>
+                                  <% } %>
+                              </div>
+                          </div>
+                          <div class="form-group col-lg-12">
+                              <label class="korean col-lg-4 control-label" for="reserve_pcount">사진속 인원수<br><span class="order_label_tip">(사진속 인원수와 예약내용이 다를 경우 변경예약가능)</span></label>
+                              <div class="col-lg-6">
+                                <% if (datas[0].reserve_state == 0) { %>
+                                  <select class="form-control korean input-lg" id="reserve_pcount" name="reserve_pcount">
+                                    <% if (datas[0].reserve_pcount == 1) { %>
+                                        <option value="1" selected >1명</option>
+                                        <option value="2">2명</option>
+                                        <option value="3">3명</option>
+                                        <option value="4">4명</option>
+                                    <% } else if (datas[0].reserve_pcount == 2) { %>
+                                        <option value="1">1명</option>
+                                        <option value="2" selected>2명</option>
+                                        <option value="3">3명</option>
+                                        <option value="4">4명</option>
+                                    <% } else if (datas[0].reserve_pcount == 3) { %>
+                                        <option value="1">1명</option>
+                                        <option value="2">2명</option>
+                                        <option value="3" selected>3명</option>
+                                        <option value="4">4명</option>
+                                    <% } else if (datas[0].reserve_pcount == 4) { %>
+                                        <option value="1">1명</option>
+                                        <option value="2">2명</option>
+                                        <option value="3">3명</option>
+                                        <option value="4" selected>4명</option>
+                                    <% } %>
+                                  </select>
+                                <% } else { %>
+                                    <input type="text" class="korean form-control input-lg" id="atist_name" value="<%=datas[0].reserve_pcount %>" readonly>
+                                <% } %>
+                              </div>
+                          </div>
+                          <div class="form-group col-lg-12">
+                          	  <label class="korean col-lg-4 control-label " for="artist_name">마감일<br><span class="order_label_tip">(마감일까지 완성 불가능시 날짜 변경예약가능)</span></label>
+                              <div class="col-lg-6">
+                              	  <h4 class="costomer_dead_line korean">고객이 원하는 마감일<br> <%=datas[0].reserve_wanttime %></h4>
+                              </div>
+                          </div>
+                          <div class="form-group col-lg-12">
+                              <label class="korean col-lg-4 control-label" for="reserve_time1">마감일 설정<br><span class="order_label_tip">(예약수락 당일 결제시)</span></label>
+                              <div class="col-lg-6">
+                                <% if (datas[0].reserve_state == 0) { %>
+                              	  <input type="date" class="korean form-control input-lg" id="reserve_time1" name="reserve_time1" min="<%=limit %>" value="<%=datas[0].reserve_wanttime %>">
+                                <% } else { %>
+                                  <input type="text" class="form-control add_pay" id="reserve_time1" name="reserve_time1" value="<%=datas[0].reserve_time1 %>" readonly>
+                                <% } %>
+                              </div>
+                          </div>
+                          <div class="form-group col-lg-12">
+                              <label class="korean col-lg-4 control-label" for="reserve_time2">마감일 설정<br><span class="order_label_tip">(예약수락 1일후 결제시)</span></label>
+                              <div class="col-lg-6">
+                                <% if (datas[0].reserve_state == 0) { %>
+                              	  <input type="date" class="korean form-control input-lg" id="reserve_time2" name="reserve_time2" min="<%=limit %>" value="<%=datas[0].reserve_wanttime %>">
+                                <% } else { %>
+                                    <input type="text" class="form-control add_pay" id="reserve_time2" name="reserve_time2" value="<%=datas[0].reserve_time2 %>" readonly>
+                                <% } %>
+                              </div>
+                          </div>
+                          <div class="form-group col-lg-12">
+                              <label class="korean col-lg-4 control-label" for="reserve_time3">마감일 설정<br><span class="order_label_tip">(예약수락 2일후 결제시)</span></label>
+                              <div class="col-lg-6">
+                                <% if (datas[0].reserve_state == 0) { %>
+                              	  <input type="date" class="korean form-control input-lg" id="reserve_time3" name="reserve_time3" min="<%=limit %>" value="<%=datas[0].reserve_wanttime %>">
+                                <% } else { %>
+                                  <input type="text" class="form-control add_pay" id="reserve_time3" name="reserve_time3" value="<%=datas[0].reserve_time3 %>" readonly>
+                                <% } %>
+                              </div>
+                          </div>
+                  </div>
+                  <!--/.order_basic_info end-->
+                  <!--order_request start-->
+                          <div class="order_request col-lg-12">
+                              <label class="korean col-lg-12" id="order_request_label">요구사항</label>
+                              <div class="col-lg-12">
+                                  <textarea class="korean form-control input-lg" id="atist_name" rows="6" readonly><%=datas[0].reserve_req %>
+                                  </textarea>
+                              </div>
+                  	  	  </div>
+                          <!--/.order_request end-->
+                  <hr class="col-lg-12" id="hr">
+                  <div class="form-group col-lg-12">
+                          	  <label class="korean col-lg-12 control-label" for="reserve_addpay">추가금액<br><span class="order_label_tip">(요구사항에 따라서 추가금 책정 후 예약가능)</span></label>
+                              <div class="input-group input-group-lg col-lg-12">
+                                <% if (datas[0].reserve_state == 0) { %>
+                                  <input type="text" class="form-control add_pay" id="reserve_addpay" name="reserve_addpay" value="<%=datas[0].reserve_addpay %>">
+                                  <span class="input-group-addon">원</span>
+                                <% } else { %>
+                                  <input type="text" class="form-control add_pay" id="reserve_addpay" name="reserve_addpay" value="<%=datas[0].reserve_addpay %>" readonly>
+                                  <span class="input-group-addon">원</span>
+                                <% } %>
+                              </div>
+                          </div>
+                          <label class="korean col-lg-12 control-label" for="reserve_addpay">거절 이유 선택 <br><span class="order_label_tip">(해당하는 부분을 선택해주세요[필수])</span></label><br>
+                          <input type="radio" name="reject" value="0" checked="checked">거절안함&nbsp&nbsp
+                          <input type="radio" name="reject" value="1">사진&nbsp&nbsp
+                          <input type="radio" name="reject" value="3">요구사항
+                  <div class="reason_text">
+                    <% if (datas[0].reserve_state == 0) { %>
+                  	<label class="korean control-label">고객님께 보낼 메시지 작성<br><span class="order_label_tip">(추가금액 발생 혹은 예약 거절시 그 이유를 작성해주세요.)</span></label>
+                    <div class="col-lg-12">
+                    	<textarea class="korean form-control input-lg" id="reserve_reason" name="reserve_reason" rows="6"></textarea>
+                    </div>
+                    <% } else { %>
+                        <label class="korean control-label">고객님께 보낸 메시지<br></label>
+                        <div class="col-lg-12">
+                          <textarea class="korean form-control input-lg" id="reserve_reason" name="reserve_reason" rows="6" readonly><%=datas[0].reserve_reason %></textarea>
+                        </div>
+                    <% } %>
+                  </div>
+              </div>
+		  <!--/.order_view end-->
+            <% if (datas[0].reserve_state == 0) { %>
+              <div class="edit_complete col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <button type="button" class="edit_btn_big korean" data-toggle="modal" href="#myModal_1">예약수락</button>
+                <button type="button" class="del_btn_big korean" data-toggle="modal" href="#myModal_2">예약거절</button>
+             </div>
+             <% } %>
+
+             <input type="hidden" id="reserve_sn" name="reserve_sn" value="<%=datas[0].reserve_sn %>">
+             <input type="hidden" id="reserve_wanttime" name="reserve_wanttime" value="<%=datas[0].reserve_wanttime %>">
+             <input type="hidden" id="reserve_reject" name="reserve_reject" value="0">
+             <input type="hidden" id="reserve_prepcount" name="reserve_prepcount" value="<%=datas[0].reserve_pcount %>">
+           </form>
+          </section>
+      </section>
+	  <!--main content end-->
+      <!-- Modal_2 -->
+	  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal_1" class="modal fade">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title eng"><strong><span class="cation_icon"><i class="fa fa-1x fa-exclamation-triangle"></span></i>CAUTION<span class="cation_icon"><i class="fa fa-1x fa-exclamation-triangle"></i></span></h4>
+                  </div>
+                  <div class="modal-body">
+                      <p class="del_text korean">예약을 수락하시겠습니까?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button data-dismiss="modal" class="btn btn-theme03 korean" type="button">취소하기</button>
+                      <button class="btn btn-theme04 korean" onclick="ok();">수락완료</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+	  <!-- modal_2 -->
+      <!-- Modal_2 -->
+	  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal_2" class="modal fade">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title eng"><strong><span class="cation_icon"><i class="fa fa-1x fa-exclamation-triangle"></span></i>CAUTION<span class="cation_icon"><i class="fa fa-1x fa-exclamation-triangle"></i></span></h4>
+                  </div>
+                  <div class="modal-body">
+                      <p class="del_text korean">예약을 거절하시겠습니까?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button data-dismiss="modal" class="btn btn-theme03 korean" type="button">취소하기</button>
+                      <button class="btn btn-theme04 korean" onclick="reject();">거절완료</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+	  <!-- modal_2 -->
+  </section>
+
+   <!-- js placed at the end of the document so the pages load faster -->
+	<script src="/chm/assets_artist/js/fancybox/jquery.fancybox.js"></script>
+    <script src="/chm/assets_artist/js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="/chm/assets_artist/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="/chm/assets_artist/js/jquery.scrollTo.min.js"></script>
+    <script src="/chm/assets_artist/js/jquery.nicescroll.js" type="text/javascript"></script>
+
+    <!--common script for all pages-->
+    <script src="/chm/assets_artist/js/common-scripts.js"></script>
+
+    <script type="text/javascript" src="/chm/assets_artist/js/gritter/js/jquery.gritter.js"></script>
+    <script type="text/javascript" src="/chm/assets_artist/js/gritter-conf.js"></script>
+
+
+	<!--script for this page-->
+
+  <script type="text/javascript">
+      $(function() {
+        //    fancybox
+          jQuery(".fancybox").fancybox();
+      });
+
+  </script>
+
+  <script>
+      //custom select box
+
+      $(function(){
+          $("select.styled").customSelect();
+      });
+
+  </script>
+
+
+  </body>
+</html>

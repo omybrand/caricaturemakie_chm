@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Caricature Make for Payment</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+	<meta name="description" content="caricature make payment page">
+	<meta name="author" content="O MY BRAND">
+
+	<!-- Bootstrap Core CSS -->
+	<link href="/chm/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link href="/chm/css/modern-business_2.css" rel="stylesheet">
+
+	<!-- Owl Carousel Assets -->
+	<link href="/chm/css/owl.carousel.css" rel="stylesheet">
+	<link href="/chm/css/owl.theme.css" rel="stylesheet">
+
+	<!-- Custom Fonts -->
+	<link href="/chm/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<script src="https://mup.mobilians.co.kr/js/ext/ext_inc_comm.js"></script>
+
+	<script>
+		var defCharset=document.charset;
+
+		function onSubmit()
+		{
+			var order_form = document.ini;
+			var paymethod = order_form.paymethod.value;
+
+			if (/MSIE/.test(navigator.userAgent))
+		    {
+		        document.charset = 'euc-kr';
+		    }
+
+		    if (order_form.P_UNAME.value == '') {
+		    	alert("이름을 입력해주세요");
+		    	return;
+		    }
+
+		    if (order_form.P_MOBILE.value == '') {
+		    	alert("핸드폰 번호를 입력해주세요");
+		    	return;
+		    }
+
+		    if (paymethod != "mobile") {
+		    	if (paymethod == "DBANK") {
+		    		order_form.P_APP_BASE.value = "ON";
+		    	}
+
+		    	order_form.action = "https://mobile.inicis.com/smart/" + paymethod + "/";
+		    	var p_mob = order_form.P_MOBILE.value;
+		    	var submit_mob;
+		    	if (p_mob.length == 10) {
+		    		var firstp = p_mob.substring(0, 3);
+		    		var midp = p_mob.substring(3, 6);
+		    		var endp = p_mob.substring(6, 10);
+		    		submit_mob = firstp + "-" + midp + "-" + endp;
+		    		order_form.P_MOBILE.value = submit_mob;
+//		    		console.log(submit_mob);
+//		    		alert("전화번호 확인");
+		    		order_form.submit();
+		    	} else if (p_mob.length == 11) {
+		    		var firstp = p_mob.substring(0, 3);
+		    		var midp = p_mob.substring(3, 7);
+		    		var endp = p_mob.substring(7, 11);
+		    		submit_mob = firstp + "-" + midp + "-" + endp;
+		    		order_form.P_MOBILE.value = submit_mob;
+//		    		console.log(submit_mob);
+//		    		alert("전화번호 확인");
+		    		order_form.submit();
+		    	} else {
+		    		alert("정상적인 휴대폰번호가 아닙니다.");
+		    	};
+		   	} else {
+//		   		console.log("모바일 선택");
+		   		order_form.MC_No.value = order_form.P_MOBILE.value;
+		   		MCASH_PAYMENT(order_form);
+		   	}
+
+			document.charset=defCharset;
+		}
+	</script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<a class="navbar-brand"><img src="/chm/imgs/logo.png"></a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	<!--네비-->
+	<div id="contents" class="container" >
+		<!--payment-->
+		<div class="payment">
+			<br>
+			<div class="coment_group" align="center">
+				<form id="form1" name="ini" method="post" action="" class="form-horizontal" role="form" acceptcharset="euc-kr">
+					<!--
+					<div class="form-group">
+						<label class="col-lg-2 control-label">주문번호</label>
+						<div class="col-lg-10">
+							<input type="text" class="form-control" name="P_OID" value="<%= o_id %>" readonly >
+						</div>
+					</div>
+					-->
+					<div class="form-group">
+						<label class="col-lg-2 control-label">상품명</label>
+						<div class="col-lg-10">
+							<input type="text" class="form-control" name="P_GOODS" value="<%= g_name %>" readonly>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label">가격</label>
+						<div class="col-lg-10">
+							<input type="text" class="form-control" name="P_AMT" value="<%= price %>" readonly>
+						</div>
+					</div>
+					<!--
+					<div class="form-group">
+						<label class="col-lg-2 control-label">회사명</label>
+						<div class="col-lg-10">
+							<input type="text" class="form-control" name="P_MNAME" value="omybrand.com" readonly>
+						</div>
+					</div>
+					-->
+					<div class="form-group">
+						<label class="col-lg-2 control-label">이메일</label>
+						<div class="col-lg-10">
+							<input type="email" class="form-control" name="P_EMAIL" value="<%= user_id %>" readonly>
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label">성명</label>
+						<div class="col-lg-10">
+							<input type="text" class="form-control" name="P_UNAME" value="">
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label">전화번호</label>
+						<div class="col-lg-10">
+							<input type="tel" class="form-control" name="P_MOBILE" placeholder="(-)없이 입력해주세요" >
+						</div>
+					</div>
+					<div class="form-group">
+						<label class="col-lg-2 control-label">결제방법</label>
+						<div class="col-lg-10">
+							<select class="form-control" name="paymethod" id="select">
+								<option value="wcard">신용카드</option>
+								<option value="mobile">휴대폰</option>
+								<!--
+								<option value="bank">계좌이체</option>
+								-->
+							</select>
+						</div>
+					</div>
+
+					<input type="hidden" name="P_OID" value="<%= o_id %>">
+					<input type="hidden" name="P_MNAME" value="omybrand.com">
+					<input type="hidden" name="P_MID" value="omybrand00">
+					<input type="hidden" name="P_NOTI" value="">
+					<input type="hidden" name="P_NEXT_URL" value="<%= next_url %>">
+					<input type="hidden" name="P_RETURN_URL" value="<%= next_url %>">
+					<input type="hidden" name="P_NOTI_URL" value="https://www.omybrand.com/chm/order_app/validorder">
+					<input type="hidden" name="P_APP_BASE" value="">
+					<input type="hidden" name="P_HPP_METHOD" value="2">
+					<input type="hidden" name="P_TAX" value="<%= price * 0.1 %>">
+
+					<input type="hidden" name="CASH_GB" id="CASH_GB" size="30" value="<%=CASH_GB%>">
+					<input type="hidden" name="Okurl" id="Okurl" size="50" value="<%=Okurl%>">
+					<input type="hidden" name="MC_SVCID" id="MC_SVCID" size="30" value="<%=MC_SVCID%>">
+					<input type="hidden" name="Prdtnm" id="Prdtnm" size="30" value="<%=Prdtnm%>">
+					<input type="hidden" name="Prdtprice" id="Prdtprice" size="30" value="<%=Prdtprice%>">
+					<input type="hidden" name="Siteurl" id="Siteurl" size="30" value="<%=Siteurl%>">
+					<input type="hidden" name="PAY_MODE" id="PAY_MODE" size="30" value="<%=PAY_MODE%>">
+					<input type="hidden" name="Tradeid" id="Tradeid" size="50" value="<%=Tradeid%>">
+					<input type="hidden" name="LOGO_YN" id="LOGO_YN" size="30" value="<%=LOGO_YN%>">
+					<input type="hidden" name="CALL_TYPE" id="CALL_TYPE" size="30" value="<%=CALL_TYPE%>">
+					<input type="hidden" name="MC_AUTHPAY" id="MC_AUTHPAY" size="30" value="">
+					<input type="hidden" name="Notiurl" id="Notiurl" size="50" value="<%=Notiurl%>">
+					<input type="hidden" name="MC_AUTOPAY" id="MC_AUTOPAY" size="30" value="">
+					<input type="hidden" name="Closeurl" id="Closeurl" size="50" value="<%=Closeurl%>">
+					<input type="hidden" name="MC_PARTPAY" id="MC_PARTPAY" size="30" value="">
+					<input type="hidden" name="Failurl" id="Failurl" size="50" value="<%=Failurl%>">
+					<input type="hidden" name="MC_No" id="MC_No" size="30" value="">
+					<input type="hidden" name="MC_FIXNO" id="MC_FIXNO" size="30" value="<%=MC_FIXNO%>">
+					<input type="hidden" name="MC_Cpcode" id="MC_Cpcode" size="30" value="">
+					<input type="hidden" name="Userid" id="Userid" size="30" value="<%=Userid%>">
+					<input type="hidden" name="Item" id="Item" size="30" value="<%=Item%>">
+					<input type="hidden" name="Prdtcd" id="Prdtcd" size="30" value="">
+					<input type="hidden" name="Payeremail" id="Payeremail" size="30" value="<%=Payeremail%>">
+					<input type="hidden" name="MC_DEFAULTCOMMID" id="MC_DEFAULTCOMMID" size="30" value="">
+					<input type="hidden" name="MC_FIXCOMMID" id="MC_FIXCOMMID" size="30" value="">
+					<input type="hidden" name="MSTR" id="MSTR" size="50" value="">
+					<input type="hidden" name="Sellernm" id="Sellernm" size="30" value="">
+					<input type="hidden" name="Sellertel" id="Sellertel" size="30" value="">
+					<input type="hidden" name="Notiemail" id="Notiemail" size="30" value="">
+					<input type="hidden" name="IFRAME_NAME" id="IFRAME_NAME" size="30" value="">
+					<input type="hidden" name="INFOAREA_YN" id="INFOAREA_YN" size="30" value="Y">
+					<input type="hidden" name="FOOTER_YN" id="FOOTER_YN" size="30" value="Y">
+					<input type="hidden" name="HEIGHT" id="HEIGHT" size="30" value="">
+					<input type="hidden" name="PRDT_HIDDEN" id="PRDT_HIDDEN" size="30" value="">
+					<input type="hidden" name="EMAIL_HIDDEN" id="EMAIL_HIDDEN" size="30" value="">
+					<input type="hidden" name="CONTRACT_HIDDEN" id="CONTRACT_HIDDEN" size="30" value="Y">
+					<input type="hidden" name="Cryptyn" id="Cryptyn" size="30" value="N">
+					<input type="hidden" name="Cryptstring" id="Cryptstring" size="50" value="">
+				</form>
+			</div>
+			<!--/coment_group-->
+			<div class="col-lg-12">
+				<input type="button" class="btn btn-primary" onClick="onSubmit();" value="확인">
+			</div>
+		</div>
+		<!--/payment-->
+	</div>
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div>
+						<p class="company_info">상호: 오마이브랜드&nbsp;&nbsp;&nbsp; 사업자등록번호: 215-24-67477&nbsp;&nbsp;&nbsp; 사업장대표번호: 070-4680-5217&nbsp;&nbsp;&nbsp; 사업장 주소지: 서울시 용산구 원효로1가 25 용산창업플러스센터 본관 305호 대표자&nbsp;&nbsp;&nbsp; 성명: 심성규</p>
+					</div>
+					<hr class="footer_hr">
+					<span class="copyright">Copyright &copy; O'MY BRAND 2014</span>
+				</div>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,260 @@
+﻿/*!
+ * Start Bootstrap - Modern Business HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Global Styles */
+
+
+@font-face{font-family:"Noto Sans Korean Light";src:url(../fonts/NotoSansKR-Light.otf)}
+
+html,
+body {
+    height: 100%;
+}
+
+
+/*네비게이션 바*/
+a:hover{
+	text-decoration:none;
+}
+
+.navbar{
+	background-color:#fff;
+	border-color:#CCC;
+	color:#FFF;
+}
+
+.nav{
+	color:#FFF;
+}
+
+.navbar-brand{
+	text-align:center;
+}
+/*네비게이션 바 end*/
+
+
+/*컨텐츠영역*/
+#contents{
+	max-width:1200px;
+	text-align:center;
+	background-color:#f2f2f2;
+	margin-top:50px;
+	margin-bottom:50px;
+	font-family:"Noto Sans Korean Light";
+}
+
+#article{
+	background-color:#FFF;
+	margin-top:50px;
+	margin-right:40px;
+	margin-bottom:80px;
+	margin-left:40px;
+	padding:20px;
+	border:solid 1px;
+	border-color:#c8c8c8;
+}
+
+#order_list{
+	text-align:center;
+	
+	margin-top:30px;
+	
+	margin-bottom:40px;
+	
+	padding:30px;
+	
+}
+
+.panel-title{
+	margin:10px;
+}
+/*컨텐츠영역 end*/
+
+
+/*버튼*/
+.btn{
+	border-color:#ff8886;
+	padding-top:0px;
+	padding-left:15px;
+	padding-bottom:7px;
+	padding-right:15px;
+	background-color:#ff8886;
+	font-weight:600;
+	
+}
+.btn:hover{
+	border-color:#f25c5a;
+	background-color:#f25c5a;
+}
+
+.btn_group{
+	margin-top:20px;
+}
+
+#finish{
+	border-color:#58d5c0;
+	padding-top:10px;
+	padding-left:25px;
+	padding-bottom:10px;
+	padding-right:25px;
+	background-color:#58d5c0;
+	
+}
+#finish{
+	display:inline-block;
+	margin-bottom:0;
+	font-size:16px;
+	font-weight:400;
+	line-height:	1.42857143;
+	text-align:center;
+	white-space:nowrap;
+	vertical-align:middle;
+	cursor:pointer;
+	-webkit-user-select:none;
+	-moz-user-select:none;
+	-ms-user-select:none;
+	user-select:none;
+	background-image:none;border:1px solid transparent;
+	
+}
+
+#finish:hover{
+	border-color:#2fc7ac;
+	background-color:#2fc7ac;
+}
+/*버튼 end*/	
+
+
+/*로그인 페이지*/
+#login{
+	text-align:center;
+	margin-top:350px;
+	margin-right:200px;
+	margin-left:200px;
+		
+}
+/*로그인 페이지 end*/
+
+
+/* Footer Styles */
+footer {
+	margin:10px;
+}
+/* Footer Styles end */
+
+
+/* Responsive Styles */
+@media(max-width:991px) {
+    .customer-img,
+    .img-related {
+        margin-bottom: 30px;
+    }
+}
+
+@media(max-width:767px) {
+	header.carousel .carousel {
+        height: 70%;
+    }
+	
+	#login{
+	text-align:center;
+	margin-top:350px;
+	margin-right:100px;
+	margin-left:100px;
+		
+	}
+	.navbar-brand{
+		padding:5px 0px 0px 10px;
+	}
+
+}
+
+@media(max-width:500px) {
+	#contents{
+		
+		width:100%;
+		text-align:center;
+		background-color:#f2f2f2;
+		font-family:"Noto Sans Korean Light";
+	
+	}
+	
+	.menual{
+		width:100%;
+		background-color:#FFF;
+		margin-top:30px;
+		margin-right:0px;
+		margin-bottom:80px;
+		margin-left:0px;
+		padding:10px;
+	}
+	
+	#article{
+		
+		width:100%;
+		background-color:#FFF;
+		margin-top:30px;
+		margin-right:0px;
+		margin-bottom:80px;
+		margin-left:0px;
+		padding:30px;
+		border:solid 1px;
+		border-color:#c8c8c8;
+	}
+	
+	textarea{
+		width:100%;
+		text-align:center;
+		resize:none;
+		
+		
+	}
+	
+	#login{
+		text-align:center;
+		margin-top:150px;
+		margin-right:0px;
+		margin-bottom:80px;
+		margin-left:0px;
+			
+	}
+	#owl-demo .item img{
+		display: block;
+		width: 100%;
+		height: auto;
+		
+	}
+	
+	.artist{
+		background-color:#FFF;
+		margin-top:30px;
+		margin-right:0px;
+		margin-bottom:30px;
+		margin-left:0px;
+		padding-right:20px;
+		padding-left:20px;
+		border:solid 1px;
+		border-color:#c8c8c8;
+	}
+	
+	.coment_box{
+		margin-left:0px;
+		margin-right:0px;
+	}
+	
+	.change_group{
+		margin-top:30px;
+		margin-right:0px;
+		margin-bottom:30px;
+		margin-left:0px;
+	}
+	
+	.navbar-brand{
+		padding:3px 0px 0px 10px;
+	}
+
+	
+}

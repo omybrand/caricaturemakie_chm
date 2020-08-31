@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Caricature Make for Result</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" >
+	<meta name="description" content="caricature make payment page">
+	<meta name="author" content="O MY BRAND">
+
+	<!-- Bootstrap Core CSS -->
+	<link href="/chm/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom CSS -->
+	<link href="/chm/css/modern-business_2.css" rel="stylesheet">
+
+	<!-- Custom Fonts -->
+	<link href="/chm/font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<script>
+		function logout() {
+			location.href="/chm/user/logout";
+		}
+
+		function gohome() {
+			location.href="/chm/user/";
+		}
+
+		function GoTo(command)
+		{
+   			window.android.GoTo(command);
+		}
+
+	</script>
+</head>
+<body onload="GoTo('OrderOk');">
+	<!-- 네비게이션 -->
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<a class="navbar-brand" href="/chm/user/login"><img src="/chm/imgs/logo.png"></a>
+			</div>
+			<!-- Collect the nav links, forms, and other content for toggling -->
+		</div>
+		<!-- /.container -->
+	</nav>
+	<!-- Page Content -->
+	<div id="contents" class="container" >
+		<!--result-->
+		<div class="result">
+			<h3>결제실패</h3>
+			<p>결제가 취소되었습니다.</p>
+			<!--btn-group-->
+			<div class="btn-group">
+				<div class="col-lg-6">
+					<input type="button" class="btn btn-primary" value="로그아웃" onclick="logout()">
+				</div>
+				<div class="col-lg-6">
+					<input type="button" class="btn btn-primary" value="&nbsp&nbsp&nbsp&nbsp&nbsp확인&nbsp&nbsp&nbsp&nbsp&nbsp" onclick="gohome()">
+				</div>
+			</div>
+			<!--/btn-group-->
+		</div>
+		<!--/result-->
+	</div>
+	<!-- /.container -->
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div>
+						<p class="company_info">상호: 오마이브랜드&nbsp;&nbsp;&nbsp; 사업자등록번호: 215-24-67477&nbsp;&nbsp;&nbsp; 사업장대표번호: 070-4680-5217&nbsp;&nbsp;&nbsp; 사업장 주소지: 서울시 용산구 원효로1가 25 용산창업플러스센터 본관 305호 대표자&nbsp;&nbsp;&nbsp; 성명: 심성규</p>
+					</div>
+					<hr class="footer_hr">
+					<span class="copyright">Copyright &copy; O'MY BRAND 2014</span>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+	<!-- jQuery Version 1.11.0 -->
+	<script src="/chm/js/jquery-1.11.0.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="/chm/js/bootstrap.min.js"></script>
+</body>
+</html>

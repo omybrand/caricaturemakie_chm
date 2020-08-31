@@ -1,0 +1,206 @@
+/*!
+ * Start Bootstrap - Modern Business HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Global Styles */
+/*@font-face{font-family:"Noto Sans Korean DemiLight";src:url(../fonts/NotoSansKR-DemiLight.otf)}*/
+
+body{}
+
+html,
+body {
+	height:100%;
+	background-color:#f1f1f1;
+}
+
+.navbar{
+	background-color:#ff8886;
+	border-color:#ff8886;
+	color:#FFF;
+}
+
+.nav{
+	color:#FFF;
+}
+
+.navbar-toggle{
+	background-color:#ff8886;
+	border-color:#ff8886;
+	color:#FFF;
+
+}
+
+#contents{
+	width:100%;
+	margin:0px 0px;
+	padding:0px 0px;
+	text-align:center;
+	background-color:#f2f2f2;
+	margin-bottom:50px;
+	font-family:"Noto Sans Korean DemiLight";
+}
+
+#article{
+	background-color:#FFF;
+	margin-top:50px;
+	margin-right:80px;
+	margin-bottom:80px;
+	margin-left:80px;
+	padding:30px;
+	border:solid 1px;
+	border-color:#c8c8c8;
+}
+
+#logout{
+	margin:0;
+}
+
+.worksinfo_input{
+	margin-top:50px;
+	margin-bottom:50px;
+}
+
+.request_img{
+	text-align:center;
+}
+
+.worksinfo .request_img img{
+	float:left;
+}
+
+/* 공지사항 페이지 */
+
+a:link{
+	text-decoration:none;
+	color:#484848;
+}
+
+a:visited{
+	text-decoration:none;
+	color:#484848;
+}
+
+a:hover{
+	text-decoration:none;
+	color:#484848;
+}
+
+a:active{
+	text-decoration:none;
+	color:#484848;
+}
+
+.date{
+	margin-left:5px;
+	font-size:.8em;
+	color:#808080;
+	text-align:right;
+}
+
+.notice_title{
+	font-weight:600;
+	font-size:15px;
+	text-align:left;
+}
+
+.dropdown_icon img{
+	width:15px;
+	text-align:left;
+	margin-right:5px;
+	opacity:0%;
+}
+
+.panel{
+	border-radius:0px;
+}
+
+.panel-heading{
+	display:table;
+	text-align:left;
+	border-radius:0px;
+	width:100%;
+	padding:0px 0px;
+}
+
+.dropdown, .notice_title{
+	float:left;
+}
+
+.dropdown{
+	text-align:center;
+	width:45px;
+	height:60px;
+	display:table;
+	vertical-align:middle;
+	padding:10px 0px;
+	border-right:solid 1px #c8c8c8;
+}
+
+.dropdown p{
+	display:table-cell;
+	vertical-align:middle;
+}
+
+#icon_img{
+	width:15px;
+}
+
+.notice_title{
+	display:table;
+	vertical-align:middle;
+	width:80%;
+	height:60px;
+	float:left;
+	padding:10px 0px;
+	padding-left:10px;
+}
+
+.notice_title p{
+	display:table-cell;
+	vertical-align:middle;
+}
+
+
+.date{
+	margin:0px 0px;
+	padding:0px 0px;
+	font-size:13px;
+}
+
+.panel-body{
+	background-color:#fafafa;
+	text-align:left;
+}
+
+.pink_text{
+	color:#ff8886;
+}
+
+.panel-body img{
+	width:100%;
+	padding:5px 0px;
+}
+
+#notice{
+	text-align:center;
+	margin:0px 0px;
+	padding:0px 0px;
+}
+
+#notice_article{
+	margin:0px 0px;
+	padding:0px 0px;
+}
+
+@media(max-width:500px) {
+#contents{
+	width:100%;
+	text-align:center;
+	background-color:#f2f2f2;
+	font-family:"Noto Sans Korean DemiLight";
+
+}
+
+}

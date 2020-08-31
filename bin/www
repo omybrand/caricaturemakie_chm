@@ -1,0 +1,10 @@
+#!/usr/bin/env node
+var debug = require('debug')('omav_chm_v1.1.0');
+var app = require('../app');
+
+// 포트 정하기
+app.set('port', process.env.PORT || 8627);
+
+var server = app.listen(app.get('port'), function() {
+  debug('Express server listening on port ' + server.address().port);
+});

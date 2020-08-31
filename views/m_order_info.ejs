@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OMV admin</title>
+
+    <!-- Custom styles for this template -->
+    <link href="/chm/assets/css/style.css" rel="stylesheet">
+    <link href="/chm/assets/css/style-responsive.css" rel="stylesheet">
+
+    <!-- Bootstrap core CSS -->
+    <link href="/chm/assets/css/bootstrap.css" rel="stylesheet">
+    <!--external css-->
+    <link href='http://fonts.googleapis.com/css?family=Comfortaa:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="/chm/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/chm/assets/css/zabuto_calendar.css">
+    <link rel="stylesheet" type="text/css" href="/chm/assets/js/gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="/chm/assets/lineicons/style.css">
+
+
+
+    <script src="/chm/assets/js/chart-master/Chart.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+  <section id="container" >
+      <!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+      <!--header start-->
+      <header class="header black-bg">
+              <div class="sidebar-toggle-box">
+                  <div class="fa fa-bars" data-placement="right" data-original-title="Toggle Navigation"></div>
+              </div>
+            <!--logo start-->
+            <a href="/chm/manage/" class="logo"><b>OMV admin</b></a>
+            <!--logo end-->
+            </div>
+            <div class="top-menu">
+            	<ul class="nav pull-right top-menu">
+                    <li><a class="logout" href="/chm/manage/logout">Logout</a></li>
+            	</ul>
+            </div>
+        </header>
+      <!--header end-->
+
+      <!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+      <!--sidebar start-->
+            <aside>
+                <div id="sidebar"  class="nav-collapse ">
+                    <!-- sidebar menu start-->
+                    <ul class="sidebar-menu" id="nav-accordion">
+                        <li class="sub-menu korean">
+                            <a href="javascript:;" class="active">
+                                <i class="fa fa-bell sidebar_icon"></i>
+                                <span>주문관리</span>
+                            </a>
+                            <ul class="sub">
+                                <li class="active"><a  href="/chm/manage/orderlist/list">주문내역 보기</a></li>
+                                <li><a  href="/chm/manage/orderlist/check">최종 결과물 검수</a></li>
+                                <li><a  href="/chm/manage/orderlist/goods">상품 주문 및 배송 관리</a></li>
+                                <li><a  href="/chm/manage/orderlist/add">오프라인주문 추가</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu korean">
+                            <a href="javascript:;" >
+                                <img src="/chm/assets/img/artist.png" class="sidebar_icon">
+                                <span class="sidebar_text">작가관리</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a  href="/chm/manage/artist/list">작가 리스트 보기</a></li>
+                                <li><a  href="/chm/manage/artist/add">작가 추가</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu korean">
+                            <a href="javascript:;" >
+                                <img src="/chm/assets/img/style.png" class="sidebar_icon">
+                                <span class="sidebar_text">스타일관리</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a  href="/chm/manage/style/list">스타일 리스트 보기</a></li>
+                                <li><a  href="/chm/manage/style/add">스타일 추가</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu korean">
+                            <a href="javascript:;" >
+                                <i class="fa fa-gift sidebar_icon"></i>
+                                <span class="sidebar_text">상품관리</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a  href="/chm/manage/goods/list">상품 리스트 보기</a></li>
+                                <li><a  href="/chm/manage/goods/add">상품 추가</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu korean">
+                            <a href="javascript:;" >
+                                <i class="fa fa-comment sidebar_icon"></i>
+                                <span class="sidebar_text">문의관리</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a  href="/chm/manage/contact/list">답변 미완료 내역</a></li>
+                                <li><a  href="/chm/manage/qa">답변 완료 내역</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu korean">
+                            <a href="javascript:;" >
+                                <i class="fa fa-user sidebar_icon" ></i>
+                                <span class="sidebar_text">User관리</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a  href="/chm/manage/user/black">블랙리스트</a></li>
+                                <li><a  href="/chm/manage/user/fail">로그인 실패 리스트</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu korean">
+                            <a href="javascript:;" >
+                                <img src="/chm/assets/img/mobile.png" class="sidebar_icon">
+                                <span class="sidebar_text">App관리(공지관리)</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a  href="/chm/manage/notice_a">작가 공지사항 관리</a></li>
+                                <li><a  href="/chm/manage/notice">App 공지사항 관리</a></li>
+                                <li><a  href="/chm/manage/banner">App 메인배너 관리</a></li>
+                                <li><a  href="/chm/manage/app">App 버전 관리</a></li>
+                            </ul>
+                        </li>
+                        <li class="sub-menu korean">
+                            <a href="javascript:;" >
+                                <i class=" fa fa-bar-chart-o sidebar_icon"></i>
+                                <span class="sidebar_text">정산</span>
+                            </a>
+                            <ul class="sub">
+                                <li><a  href="/chm/manage/carical">캐리커쳐 정산</a></li>
+                                <li><a  href="/chm/manage/chartjs">상품정산</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <!-- sidebar menu end-->
+                </div>
+            </aside>
+            <!--sidebar end-->
+
+      <!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+      <!--main content start-->
+      <section id="main-content">
+          <section class="wrapper">
+	  	      <div class="main-content-title">
+              	  <h1 class="eng"><strong>Order detail view</strong></h1>
+                  <h5 class="sub-title korean">[주문 상세정보]</h5>
+              </div>
+              <!--art_style_edit start-->
+              <div class="art_style_edit price">
+              	  <!--order_list_view start-->
+                  <div class="order_list_view">
+                	  <div class="body-panel info_edit_body">
+                          <h5 class="korean">주문번호<span class="order_number"><%=datas[0].order_sn %></span></h5>
+                      </div>
+                  </div>
+                  <!--/.order_list_view end-->
+                  <!--order_list_view start-->
+                  <div class="order_list_view">
+                	  <div class="art_style_caption">
+                		  <ul>
+                              <li><h4 class="order_list_name korean">1.캐리커쳐 주문정보</h4></li>
+                          </ul>
+                      </div>
+                      <div class="body-panel info_edit_body">
+                          <div class="order_list_view_table korean">
+                              <table class="korean">
+                                  <tr class="tr1">
+                                      <td class="element">주문날짜</td>
+                                      <td class="contents"><%=datas[0].order_gettime %></td>
+                                  </tr>
+                                  <tr class="tr2">
+                                      <td class="element">사용자 ID</td>
+                                      <td class="contents"><%=datas[0].user_id %></td>
+                                  </tr>
+                                  <tr class="tr3">
+                                      <td class="element">주문스타일명</td>
+                                      <td class="contents"><%=datas[0].style_name %></td>
+                                  </tr>
+                                  <tr class="tr4">
+                                      <td class="element">작업스타일</td>
+                                      <% if (datas[0].order_select == 0) { %>
+                                        <td class="contents">상반신 스케치</td>
+                                      <% } else if (datas[0].order_select == 1) { %>
+                                        <td class="contents">상반신 포인트컬러</td>
+                                      <% } else if (datas[0].order_select == 2) { %>
+                                        <td class="contents">상반신 풀컬러</td>
+                                      <% } else if (datas[0].order_select == 3) { %>
+                                        <td class="contents">전신 스케치</td>
+                                      <% } else if (datas[0].order_select == 4) { %>
+                                        <td class="contents">전신 포인트컬러</td>
+                                      <% } else if (datas[0].order_select == 5) { %>
+                                        <td class="contents">전신 풀컬러</td>
+                                      <% } %>
+                                  </tr>
+                                  <tr class="tr5">
+                                      <td class="element">작업사이즈</td>
+                                      <% if (datas[0].order_size == 0) { %>
+                                        <td class="contents">A4</td>
+                                      <% } else if (datas[0].order_size == 1) { %>
+                                        <td class="contents">A2~A3</td>
+                                      <% } else if (datas[0].order_size == 2) { %>
+                                        <td class="contents">A1</td>
+                                      <% } else if (datas[0].order_size == 3) { %>
+                                        <td class="contents">A0</td>
+                                      <% } %>
+                                  </tr>
+                                  <tr class="tr6">
+                                      <td class="element">요청인원수</td>
+                                      <td class="contents"><%=datas[0].order_pcount %>인</td>
+                                  </tr>
+                                  <tr class="tr7">
+                                      <td class="element">가격</td>
+                                      <td class="contents"><%=datas[0].order_price %>원</td>
+                                  </tr>
+                                  <tr class="tr8">
+                                      <td class="element" colspan="2">요구사항</td>
+                                  </tr>
+                                  <tr class="tr9">
+                                      <td class="contents" colspan="2">
+                                        <textarea class="korean form-control input-lg" id="atist_name" rows="6" readonly><%=datas[0].order_req %>
+                                        </textarea>
+                                      </td>
+                                  </tr>
+
+                                  <tr class="tr10">
+                                      <td class="element">주문상태</td>
+                                      <% if (datas[0].order_state == 0) { %>
+                                        <td class="contents">작업 대기 중</td>
+                                      <% } else if (datas[0].order_state == 1) { %>
+                                        <td class="contents">작업 중</td>
+                                      <% } else if (datas[0].order_state == 2 && datas2.length == 0) { %>
+                                        <td class="contents">작업 완료(끝)</td>
+                                      <% } else if (datas[0].order_state == 2 && datas2.length != 0) { %>
+                                        <td class="contents">작업 완료(상품 제작 대기 중)</td>
+                                      <% } else if (datas[0].order_state == 3) { %>
+                                        <td class="contents">작업 완료(상품 제작 중)</td>
+                                      <% } else if (datas[0].order_state == 4) { %>
+                                        <td class="contents">작업 완료(배송 중)</td>
+                                      <% } else if (datas[0].order_state == 5) { %>
+                                        <td class="contents">작업 완료(배송 완료)</td>
+                                      <% } %>
+                                  </tr>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                  <!--/.order_list_view end-->
+                  <!--order_list_view start-->
+                  <div class="order_list_view">
+                	  <div class="art_style_caption">
+                		  <ul>
+                              <li><h4 class="order_list_name korean">2.캐리커쳐작업 진행정보</h4></li>
+                          </ul>
+                      </div>
+                      <div class="body-panel info_edit_body">
+                          <div class="order_list_view_table korean">
+                              <table class="korean">
+                                  <tr class="tr1">
+                                      <td class="element">작가명</td>
+                                      <td class="contents"><%=datas[0].artist_name %></td>
+                                  </tr>
+                                  <tr class="tr2">
+                                      <td class="element">작업 예상 완료 날짜</td>
+                                      <% if (datas[0].order_finishtime == undefined) { %>
+                                          <td class="contents">미정</td>
+                                      <% } else { %>
+                                          <td class="contents"><%=datas[0].order_finishtime %></td>
+                                      <% } %>
+                                  </tr>
+                                  <tr class="tr3">
+                                      <td class="element">작업상황</td>
+                                      <% if (datas[0].order_state == 0) { %>
+                                        <td class="contents">작업 대기 중</td>
+                                      <% } else if (datas[0].order_state == 1) { %>
+                                        <td class="contents">작업 중</td>
+                                      <% } else if (datas[0].order_state >= 2) { %>
+                                        <td class="contents">작업 완료</td>
+                                      <% } %>
+                                  </tr>
+                                  <tr class="tr4">
+                                      <td class="element">작업검수여부</td>
+                                      <% if (datas[0].order_check == 0) { %>
+                                        <td class="contents">검수 대기 중</td>
+                                      <% } else if (datas[0].order_check == 1) { %>
+                                        <td class="contents">검수 완료</td>
+                                      <% } %>
+                                  </tr>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                  <!--/.order_list_view end-->
+                  <!--order_list_view start-->
+                  <% if (datas2.length != 0) { %>
+                  <div class="order_list_view">
+                	  <div class="art_style_caption">
+                		  <ul>
+                              <li><h4 class="order_list_name korean">3.상품 주문정보</h4></li>
+                          </ul>
+                      </div>
+                  	  <div class="body-panel info_edit_body">
+                          <div class="order_list_view_table korean">
+                              <table class="korean">
+                                  <tr class="tr1">
+                                      <td class="element">주문자 성함</td>
+                                      <td class="contents"><%=datas[0].order_name %></td>
+                                  </tr>
+                                  <tr class="tr2">
+                                      <td class="element">주문자 전화번호</td>
+                                      <td class="contents"><%=datas[0].order_phone %></td>
+                                  </tr>
+                                  <tr class="tr3">
+                                      <td class="element">주문자 주소</td>
+                                      <td class="contents"><%=datas[0].order_addr1 %><br><%=datas[0].order_addr2 %></td>
+                                  </tr>
+                                  <tr class="tr4">
+                                      <td class="element_product" colspan="2">주문 상품 정보</td>
+                                  </tr>
+                                  <% for (var i in datas2) { %>
+                                      <tr class="tr5">
+                                          <td class="contents_product" colspan="2"><%=datas2[i].goods_name %>&nbsp&nbsp&nbsp&nbsp<%=datas2[i].goods_option_name %>&nbsp&nbsp&nbsp&nbsp<%=datas2[i].goods_count %>개&nbsp&nbsp&nbsp&nbsp<%=datas2[i].goods_price * datas2[i].goods_count %>원</td>
+                                      </tr>
+                                  <% } %>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                  <!--/.order_list_view end-->
+                  <!--order_list_view start-->
+                  <div class="order_list_view">
+                	  <div class="art_style_caption">
+                		  <ul>
+                              <li><h4 class="order_list_name korean">4.상품 제작 및 배송정보</h4></li>
+                          </ul>
+                      </div>
+                  	  <div class="body-panel info_edit_body">
+                          <div class="order_list_view_table korean">
+                              <table class="korean">
+                                  <tr class="tr1">
+                                      <td class="element">상품제작상황</td>
+                                      <% if (datas[0].order_state <= 2) { %>
+                                        <td class="contents">상품 제작 대기 중</td>
+                                      <% } else if (datas[0].order_state == 3) { %>
+                                        <td class="contents">상품 제작 중</td>
+                                      <% } else if (datas[0].order_state >= 4) { %>
+                                        <td class="contents">상품 제작 완료</td>
+                                      <% } %>
+                                  </tr>
+                                  <tr class="tr2">
+                                      <td class="element">택배상황</td>
+                                      <td class="contents">택배 회사 서버 연동 필요</td>
+                                  </tr>
+                              </table>
+                          </div>
+                      </div>
+                  </div>
+                  <!--/.order_list_view end-->
+                  <% } %>
+              </div>
+              <!--/.art_style_edit end-->
+          </section>
+          <div class="edit_complete">
+              <a data-toggle="modal" href="#myModal_1"><button type="button" class="edit_complete_btn korean">주문취소</button></a>
+          </div>
+      </section>
+      <form id="form1" name="form1" action="https://www.omybrand.com/testpay/INIcancel.jsp" method="post">
+          <input type="hidden" id="tid" name="tid" value="<%=datas[0].order_tradeid %>">
+          <input type="hidden" id="trade_id" name="trade_id" value="<%=datas[0].order_tradeid %>">
+      </form>
+	  <!--main content end-->
+      <!-- Modal -->
+	  <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal_1" class="modal fade">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title eng"><strong><span class="cation_icon"><i class="fa fa-1x fa-exclamation-triangle"></span></i>CAUTION<span class="cation_icon"><i class="fa fa-1x fa-exclamation-triangle"></i></span></h4>
+                  </div>
+                  <div class="modal-body">
+                      <p class="del_text korean">정말로 주문을 취소하시겠습니까?</p>
+                  </div>
+                  <div class="modal-footer">
+                      <button data-dismiss="modal" class="btn btn-theme03 korean" type="button">팝업닫기</button>
+                      <button class="btn btn-theme04 korean" onclick="submit();">주문취소</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+	  <!-- modal -->
+  </section>
+
+    <!-- js placed at the end of the document so the pages load faster -->
+    <script src="/chm/assets/js/jquery.js"></script>
+    <script src="/chm/assets/js/jquery-1.8.3.min.js"></script>
+    <script src="/chm/assets/js/bootstrap.min.js"></script>
+    <script class="include" type="text/javascript" src="/chm/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+    <script src="/chm/assets/js/jquery.scrollTo.min.js"></script>
+    <script src="/chm/assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+    <script src="/chm/assets/js/jquery.sparkline.js"></script>
+
+
+    <!--common script for all pages-->
+    <script src="/chm/assets/js/common-scripts.js"></script>
+
+    <script type="text/javascript" src="/chm/assets/js/gritter/js/jquery.gritter.js"></script>
+    <script type="text/javascript" src="/chm/assets/js/gritter-conf.js"></script>
+
+    <!--script for this page-->
+    <script src="/chm/assets/js/sparkline-chart.js"></script>
+	<script src="/chm/assets/js/zabuto_calendar.js"></script>
+
+	<script type="application/javascript">
+        $(document).ready(function () {
+            $("#date-popover").popover({html: true, trigger: "manual"});
+            $("#date-popover").hide();
+            $("#date-popover").click(function (e) {
+                $(this).hide();
+            });
+
+            $("#my-calendar").zabuto_calendar({
+                action: function () {
+                    return myDateFunction(this.id, false);
+                },
+                action_nav: function () {
+                    return myNavFunction(this.id);
+                },
+                ajax: {
+                    url: "show_data.php?action=1",
+                    modal: true
+                },
+                legend: [
+                    {type: "text", label: "Special event", badge: "00"},
+                    {type: "block", label: "Regular event", }
+                ]
+            });
+        });
+
+
+        function myNavFunction(id) {
+            $("#date-popover").hide();
+            var nav = $("#" + id).data("navigation");
+            var to = $("#" + id).data("to");
+            console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
+        }
+    </script>
+
+
+  </body>
+</html>

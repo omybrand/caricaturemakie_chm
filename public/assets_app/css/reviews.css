@@ -1,0 +1,118 @@
+/*!
+ * Start Bootstrap - Modern Business HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+/* Global Styles */
+/*@font-face{font-family:"Noto Sans Korean DemiLight";src:url(../fonts/NotoSansKR-DemiLight.otf)}*/
+
+body{}
+
+html,
+body {
+	height:100%;
+	background-color:#f1f1f1;
+
+}
+
+.navbar{
+	background-color:#ff8886;
+	border-color:#ff8886;
+	color:#FFF;
+}
+
+.nav{
+	color:#FFF;
+}
+
+.navbar-toggle{
+	background-color:#ff8886;
+	border-color:#ff8886;
+	color:#FFF;
+
+}
+
+#contents{
+	height:100%;
+	width:100%;
+	margin:0px 0px;
+	padding:0px 0px;
+	text-align:center;
+	background-color:#f2f2f2;
+	margin-bottom:50px;
+	font-family:"Noto Sans Korean DemiLight";
+}
+
+#article{
+	background-color:#FFF;
+	margin-top:50px;
+	margin-right:80px;
+	margin-bottom:80px;
+	margin-left:80px;
+	padding:30px;
+	border:solid 1px;
+	border-color:#c8c8c8;
+}
+
+/* 리뷰 페이지 */
+
+.review_panel{
+	display:table;
+	width:100%;
+	padding:0px 0px;
+	margin:5px 0px;
+	background-color:#fff;
+	border:0px solid transparent;
+	border-radius:0px;
+	-webkit-box-shadow:0 1px 1px rgba(200,200,200,1);
+}
+
+#rating_img{
+	width:15px;
+}
+
+.review_text, .review_rating{
+	text-align:left;
+	display:table;
+	vertical-align:middle;
+	width:100%;
+	float:left;
+	padding:5px 10px;
+}
+
+.review_text p{
+	display:table-cell;
+	vertical-align:middle;
+}
+
+.pink_text{
+	color:#ff8886;
+}
+
+.review_pic img{
+	width:30%;
+	padding:5px 0px;
+}
+
+#review{
+	text-align:center;
+	margin:0px 0px;
+	padding:0px 0px;
+}
+
+#review_article{
+	margin:0px 0px;
+	padding:0px 0px;
+}
+
+@media(max-width:500px) {
+#contents{
+	width:100%;
+	text-align:center;
+	background-color:#f2f2f2;
+	font-family:"Noto Sans Korean DemiLight";
+
+}
+
+}
